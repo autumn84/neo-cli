@@ -26,7 +26,7 @@ namespace Neo.Services
                     Console.WriteLine(Assembly.GetEntryAssembly().GetName().Version);
                     return true;
                 default:
-                    Console.WriteLine("error");
+                    Console.WriteLine("error: command not found " + args[0]);
                     return true;
             }
         }
@@ -129,9 +129,9 @@ namespace Neo.Services
                 }
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                string line = Console.ReadLine().Trim();
+                string line = Console.ReadLine()?.Trim();
+                if (line == null) break;
                 Console.ForegroundColor = ConsoleColor.White;
-
                 string[] args = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 if (args.Length == 0)
                     continue;
